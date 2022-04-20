@@ -5,11 +5,11 @@
     height: 40px;
 }
 
-.red {
+.black {
     background-color: rgb(0, 0, 0);
 }
 
-.black {
+.red {
     background-color: red;
 }
 
