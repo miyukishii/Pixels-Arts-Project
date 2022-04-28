@@ -1,11 +1,31 @@
-function createDiv () {
-    let pixelsDiv = document.querySelector("#pixel-board");
-    let pixelLine = document.createElement("div");
-    pixelLine.className = "pixel";
-    pixelsDiv.appendChild(pixelLine);
+const pixelBoard = document.querySelector("#pixel-board");
+const paleteColor = document.querySelectorAll(".color");
+paleteColor[0].style.background = "black";
+paleteColor[1].style.background = "yellow";
+paleteColor[2].style.background = "red";
+paleteColor[3].style.background = "blue";
+
+function createPixel(size) {
+  for( let index = 0; index < size*size; index += 1) {
+    const pixel = document.createElement("div");
+    pixel.className = "pixel";
+    pixelBoard.appendChild(pixel);
+  }
 }
-createDiv();
-// pixelLine.className = "pixel line";
-//     for (index = 0; index < pixelsDiv.length; index += 1) {
-//         pixelsDiv[index].appendChild(pixelLine);
-//     }
+createPixel(5);
+
+window.onload = blackSelected
+
+function blackSelected() {
+  paleteColor[0].classList.add("selected");
+}
+  
+function changeSelect(event) {
+  const currentSelected = document.querySelector(".selected");
+  currentSelected.classList.remove("selected");
+  event.target.classList.add("selected");
+}
+for(let colors of paleteColor) {
+  colors.addEventListener("click", changeSelect);
+}
+
