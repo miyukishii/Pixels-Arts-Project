@@ -1,6 +1,6 @@
 const pixelBoard = document.querySelector("#pixel-board");
 const paleteColor = document.querySelectorAll(".color");
-
+const clearButton = document.querySelector("#clear-board");
 paleteColor[0].style.background = "black";
 paleteColor[1].style.background = "yellow";
 paleteColor[2].style.background = "red";
@@ -40,3 +40,15 @@ function changeColorOfPixel(event) {
 for(let pixel of allPixels) {
   pixel.addEventListener("click", changeColorOfPixel);
 }
+
+function clearBoard () {
+  for(let pixel of allPixels) {
+  pixel.style.background = "white";
+  }
+}
+clearButton.addEventListener("click", clearBoard);
+
+
+  
+
+

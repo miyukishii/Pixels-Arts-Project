@@ -13,7 +13,7 @@ header {
 }
 #pixel-board {
     position: absolute;
-    top: 150px;
+    top: 190px;
     left: 250px;
     width: 250px;
     height: 250px;
@@ -26,4 +26,9 @@ header {
     height: 40px;
     display: inline-block;
     margin: 1px;
+}
+#clear-board {
+    position: absolute;
+    left: 330px;
+    top: 140px;
 }
