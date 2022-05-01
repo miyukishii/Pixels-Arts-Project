@@ -1,5 +1,6 @@
 const pixelBoard = document.querySelector("#pixel-board");
 const paleteColor = document.querySelectorAll(".color");
+
 paleteColor[0].style.background = "black";
 paleteColor[1].style.background = "yellow";
 paleteColor[2].style.background = "red";
@@ -29,3 +30,13 @@ for(let colors of paleteColor) {
   colors.addEventListener("click", changeSelect);
 }
 
+const allPixels = document.querySelectorAll(".pixel");
+
+function changeColorOfPixel(event) {
+  const colorSelected = document.querySelector(".selected");
+  event.target.style.background = colorSelected.style.background;
+}
+
+for(let pixel of allPixels) {
+  pixel.addEventListener("click", changeColorOfPixel);
+}
