@@ -38,7 +38,7 @@ function changeColorOfPixel(event) {
   event.target.style.background = colorSelected.style.background;
 }
 
-for(let pixel of allPixels) {
+for (let pixel of allPixels) {
   pixel.addEventListener('click', changeColorOfPixel);
 }
 
@@ -51,18 +51,23 @@ function clearBoard () {
 }
 clearButton.addEventListener('click', clearBoard);
 
-const input = document.querySelector('input').value;
+
 const generateButton = document.querySelector('#generate-board');
 
-generateButton.addEventListener('click', function generateBoard(input) {
-  if (input === 0) {
+generateButton.addEventListener('click', function generateBoard() {
+  const input = document.querySelector('input').value;
+  console.log(input);
+    if (input === "") {
     alert('Board inválido!');
-  } else {
-    pixelBoard.querySelectorAll('.pixel').remove();
+    } else {
+      pixelBoard.innerHTML = "";
+    }
+  
     for (let pixels = 0; pixels < input * input; pixels += 1) {
       const newDivPixel = document.createElement('div');
       newDivPixel.className = 'pixel';
+      newDivPixel.addEventListener('click',changeColorOfPixel);
       pixelBoard.appendChild(newDivPixel);
     }
   }
-});
+);
