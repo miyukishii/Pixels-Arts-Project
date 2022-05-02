@@ -31,12 +31,12 @@ for (let colors of paleteColor) {
   colors.addEventListener('click', changeSelect);
 }
 
-const allPixels = document.querySelectorAll('.pixel');
-
 function changeColorOfPixel(event) {
   const colorSelected = document.querySelector('.selected');
   event.target.style.background = colorSelected.style.background;
 }
+
+const allPixels = document.querySelectorAll('.pixel');
 
 for (let pixel of allPixels) {
   pixel.addEventListener('click', changeColorOfPixel);
@@ -51,23 +51,39 @@ function clearBoard () {
 }
 clearButton.addEventListener('click', clearBoard);
 
-
 const generateButton = document.querySelector('#generate-board');
 
 generateButton.addEventListener('click', function generateBoard() {
   const input = document.querySelector('input').value;
   console.log(input);
-    if (input === "") {
+    if (input < 5) {
     alert('Board inválido!');
+    pixelBoard.innerHTML = "";
+      for (let pixels = 0; pixels < 5 * 5; pixels += 1) {
+        const newDivPixel = document.createElement('div');
+        newDivPixel.className = 'pixel';
+        newDivPixel.addEventListener('click',changeColorOfPixel);
+        pixelBoard.appendChild(newDivPixel);
+      }
+    } else if (input > 50) {
+    alert('Board inválido!');
+    pixelBoard.innerHTML = "";
+      for (let pixels = 0; pixels < 50 * 50; pixels += 1) {
+        const newDivPixel = document.createElement('div');
+        newDivPixel.className = 'pixel';
+        newDivPixel.addEventListener('click',changeColorOfPixel);
+        pixelBoard.appendChild(newDivPixel);
+      }
     } else {
       pixelBoard.innerHTML = "";
+      for (let pixels = 0; pixels < input * input; pixels += 1) {
+        const newDivPixel = document.createElement('div');
+        newDivPixel.className = 'pixel';
+        newDivPixel.addEventListener('click',changeColorOfPixel);
+        pixelBoard.appendChild(newDivPixel);
+      }
     }
-  
-    for (let pixels = 0; pixels < input * input; pixels += 1) {
-      const newDivPixel = document.createElement('div');
-      newDivPixel.className = 'pixel';
-      newDivPixel.addEventListener('click',changeColorOfPixel);
-      pixelBoard.appendChild(newDivPixel);
-    }
-  }
-);
+});
+
+
+ 
