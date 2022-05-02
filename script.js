@@ -2,15 +2,32 @@ const pixelBoard = document.querySelector('#pixel-board');
 const paleteColor = document.querySelectorAll('.color');
 
 paleteColor[0].style.background = 'black';
-paleteColor[1].style.background = 'yellow';
-paleteColor[2].style.background = 'red';
-paleteColor[3].style.background = 'blue';
 
 function blackSelected() {
   paleteColor[0].classList.add('selected');
 }
 
 window.onload = blackSelected;
+
+// Para gerar cor randomicamente foi utilizado o código do site https://www.horadecodar.com.br/2022/01/16/gerar-cor-aleatoria-com-javascript/ //
+
+function generateRandomPalete() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;  
+}
+
+function defineColorOfPalete () {
+  for (let aux = 1; aux < paleteColor.length; aux += 1) {
+    paleteColor[aux].style.background = generateRandomPalete();
+  }
+}
+defineColorOfPalete();
+
+// Criar um quadro com 5 pixels de Altura e Largura//
 
 function createPixel(size) {
   for (let index = 0; index < size * size; index += 1) {
@@ -21,6 +38,8 @@ function createPixel(size) {
 }
 createPixel(5);
 
+// Adicionando evento de click em cada cor da paleta para selecionar cor//
+
 function changeSelect(event) {
   const currentSelected = document.querySelector('.selected');
   currentSelected.classList.remove('selected');
@@ -30,6 +49,8 @@ function changeSelect(event) {
 for (let colors of paleteColor) {
   colors.addEventListener('click', changeSelect);
 }
+
+// Pintando o pixel com a cor selecionada//
 
 function changeColorOfPixel(event) {
   const colorSelected = document.querySelector('.selected');
@@ -42,6 +63,8 @@ for (let pixel of allPixels) {
   pixel.addEventListener('click', changeColorOfPixel);
 }
 
+// Adicionando evento no botão de Limpar//
+
 const clearButton = document.querySelector('#clear-board');
 
 function clearBoard () {
@@ -50,6 +73,8 @@ function clearBoard () {
   }
 }
 clearButton.addEventListener('click', clearBoard);
+
+// Adicionando botão de redefinir tamanho do board//
 
 const generateButton = document.querySelector('#generate-board');
 
