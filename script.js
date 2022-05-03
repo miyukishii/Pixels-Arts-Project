@@ -33,6 +33,8 @@ function createPixel(size) {
   for (let index = 0; index < size * size; index += 1) {
     const pixel = document.createElement('div');
     pixel.className = 'pixel';
+    pixelBoard.style.width = size*45 + 'px';
+    pixelBoard.style.heigth = size*45 + 'px';
     pixelBoard.appendChild(pixel);
   }
 }
@@ -68,7 +70,8 @@ for (let pixel of allPixels) {
 const clearButton = document.querySelector('#clear-board');
 
 function clearBoard () {
-  for (let pixel of allPixels) {
+  const newAllPixels = document.querySelectorAll('.pixel');
+  for (let pixel of newAllPixels) {
     pixel.style.background = 'white';
   }
 }
@@ -88,6 +91,8 @@ generateButton.addEventListener('click', function generateBoard() {
         const newDivPixel = document.createElement('div');
         newDivPixel.className = 'pixel';
         newDivPixel.addEventListener('click',changeColorOfPixel);
+        pixelBoard.style.width = input*45 + 'px';
+        pixelBoard.style.heigth = input*45 + 'px';
         pixelBoard.appendChild(newDivPixel);
       }
     } else if (input > 50) {
@@ -97,6 +102,8 @@ generateButton.addEventListener('click', function generateBoard() {
         const newDivPixel = document.createElement('div');
         newDivPixel.className = 'pixel';
         newDivPixel.addEventListener('click',changeColorOfPixel);
+        pixelBoard.style.width = input*45 + 'px';
+        pixelBoard.style.heigth = input*45 + 'px';
         pixelBoard.appendChild(newDivPixel);
       }
     } else {
@@ -105,6 +112,8 @@ generateButton.addEventListener('click', function generateBoard() {
         const newDivPixel = document.createElement('div');
         newDivPixel.className = 'pixel';
         newDivPixel.addEventListener('click',changeColorOfPixel);
+        pixelBoard.style.width = input*45 + 'px';
+        pixelBoard.style.heigth = input*45 + 'px';
         pixelBoard.appendChild(newDivPixel);
       }
     }
