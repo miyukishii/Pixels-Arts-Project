@@ -1,5 +1,9 @@
 const pixelBoard = document.querySelector('#pixel-board');
 const paleteColor = document.querySelectorAll('.color');
+const clearButton = document.querySelector('#clear-board');
+const generateButton = document.querySelector('#generate-board');
+
+// Definir a primeira cor da paleta com a cor preta, com a classe 'selected'
 
 paleteColor[0].style.background = 'black';
 
@@ -7,117 +11,83 @@ function blackSelected() {
   paleteColor[0].classList.add('selected');
 }
 
-window.onload = blackSelected;
-
 // Para gerar cor randomicamente foi utilizado o código do site https://www.horadecodar.com.br/2022/01/16/gerar-cor-aleatoria-com-javascript/ //
 
 function generateRandomPalete() {
   const letters = '0123456789ABCDEF';
   let color = '#';
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 6; i += 1) {
     color += letters[Math.floor(Math.random() * 16)];
   }
-  return color;  
+  return color;
 }
 
-function defineColorOfPalete () {
+function chooseColorOfPalete() {
   for (let aux = 1; aux < paleteColor.length; aux += 1) {
     paleteColor[aux].style.background = generateRandomPalete();
   }
 }
-defineColorOfPalete();
+chooseColorOfPalete();
 
-// Criar um quadro com 5 pixels de Altura e Largura//
+// Criar um quadro default com 5 pixels de Altura e Largura//
 
 function createPixel(size) {
   for (let index = 0; index < size * size; index += 1) {
     const pixel = document.createElement('div');
     pixel.className = 'pixel';
-    pixelBoard.style.width = size*45 + 'px';
-    pixelBoard.style.heigth = size*45 + 'px';
     pixelBoard.appendChild(pixel);
   }
+  pixelBoard.style.width = `${size * 45}px`;
+  pixelBoard.style.height = `${size * 45}px`;
 }
-createPixel(5);
 
 // Adicionando evento de click em cada cor da paleta para selecionar cor//
 
-function changeSelect(event) {
-  const currentSelected = document.querySelector('.selected');
-  currentSelected.classList.remove('selected');
-  event.target.classList.add('selected'); 
+function changeSelect() {
+  paleteColor.forEach((color) => (
+    color.addEventListener('click', () => (
+      paleteColor.forEach((item) => (
+        item !== color ? item.classList.remove('selected') : item.classList.toggle('selected')
+      ))
+    ))));
 }
-
-for (let colors of paleteColor) {
-  colors.addEventListener('click', changeSelect);
-}
+changeSelect();
 
 // Pintando o pixel com a cor selecionada//
 
-function changeColorOfPixel(event) {
-  const colorSelected = document.querySelector('.selected');
-  event.target.style.background = colorSelected.style.background;
-}
-
-const allPixels = document.querySelectorAll('.pixel');
-
-for (let pixel of allPixels) {
-  pixel.addEventListener('click', changeColorOfPixel);
+function colorPixel() {
+  const allPixels = document.querySelectorAll('.pixel');
+  allPixels.forEach((pixel) => (
+    pixel.addEventListener('click', (e) => {
+      const colorSelected = document.querySelector('.selected');
+      e.target.style.background = colorSelected.style.background;
+    })));
 }
 
 // Adicionando evento no botão de Limpar//
 
-const clearButton = document.querySelector('#clear-board');
-
-function clearBoard () {
-  const newAllPixels = document.querySelectorAll('.pixel');
-  for (let pixel of newAllPixels) {
-    pixel.style.background = 'white';
-  }
-}
-clearButton.addEventListener('click', clearBoard);
+clearButton.addEventListener('click', () => {
+  const allPixels = document.querySelectorAll('.pixel');
+  allPixels.forEach((pixel) => (
+    pixel.style.background = 'white'));
+});
 
 // Adicionando botão de redefinir tamanho do board//
 
-const generateButton = document.querySelector('#generate-board');
-
-generateButton.addEventListener('click', function generateBoard() {
+function boardGenerator() {
   const input = document.querySelector('input').value;
-  console.log(input);
-    if (input < 5) {
+  if (input < 5 || input > 50) {
     alert('Board inválido!');
-    pixelBoard.innerHTML = "";
-      for (let pixels = 0; pixels < 5 * 5; pixels += 1) {
-        const newDivPixel = document.createElement('div');
-        newDivPixel.className = 'pixel';
-        newDivPixel.addEventListener('click',changeColorOfPixel);
-        pixelBoard.style.width = input*45 + 'px';
-        pixelBoard.style.heigth = input*45 + 'px';
-        pixelBoard.appendChild(newDivPixel);
-      }
-    } else if (input > 50) {
-    alert('Board inválido!');
-    pixelBoard.innerHTML = "";
-      for (let pixels = 0; pixels < 50 * 50; pixels += 1) {
-        const newDivPixel = document.createElement('div');
-        newDivPixel.className = 'pixel';
-        newDivPixel.addEventListener('click',changeColorOfPixel);
-        pixelBoard.style.width = input*45 + 'px';
-        pixelBoard.style.heigth = input*45 + 'px';
-        pixelBoard.appendChild(newDivPixel);
-      }
-    } else {
-      pixelBoard.innerHTML = "";
-      for (let pixels = 0; pixels < input * input; pixels += 1) {
-        const newDivPixel = document.createElement('div');
-        newDivPixel.className = 'pixel';
-        newDivPixel.addEventListener('click',changeColorOfPixel);
-        pixelBoard.style.width = input*45 + 'px';
-        pixelBoard.style.heigth = input*45 + 'px';
-        pixelBoard.appendChild(newDivPixel);
-      }
-    }
-});
+  } else {
+    pixelBoard.innerHTML = '';
+    createPixel(input);
+  }
+}
 
+generateButton.addEventListener('click', boardGenerator);
 
- 
+window.onload = () => {
+  blackSelected();
+  createPixel(5);
+  colorPixel();
+};

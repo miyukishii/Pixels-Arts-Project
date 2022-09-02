@@ -4,23 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pixels Art</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <h1 id="title">Paleta de Cores</h1>
     </header>
-    <div id="color-palette">
+    <main>
+      <div id="color-palette">
         <div class="color"></div>
         <div class="color"></div>
         <div class="color"></div>
         <div class="color"></div>
-    </div>
-    <button id="clear-board">Limpar</button>
-    <input type="number" id="board-size" min="1">
-    <button  id="generate-board">VQV</button>
-    <div id="pixel-board"></div>
+      </div>
+      <form>
+        <button type="button" id="clear-board">Limpar</button>
+        <input type="number" id="board-size" min="1">
+        <button type="button" id="generate-board">VQV</button>
+      </form>
+      <div id="pixel-board"></div>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
