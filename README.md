@@ -4,7 +4,7 @@
 No projeto Pixels Art foi desenvolvido uma aplicação de colorir um quadro de pixels que pode ser definido pelo próprio usuário.
 
 ### Tecnologias utilizadas
-Projeto desenvolvido utilizando HTML 5, CSS3, Javascript e Node.js
+Projeto desenvolvido utilizando HTML 5, CSS3 e Javascript.
 
 ### Link do Deploy
 <a href="https://pixels-arts-miyukishii.netlify.app/">Clique aqui</a>
