@@ -81,6 +81,7 @@ function boardGenerator() {
   } else {
     pixelBoard.innerHTML = '';
     createPixel(input);
+    colorPixel();
   }
 }
 
