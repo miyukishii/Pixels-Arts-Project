@@ -1,7 +1,7 @@
 ## **Bem-vindo ao repositório do projeto Pixels Art!**
 
 ### Screenshots
-![Screenshot da tela inicial](screenshot.png)
+![Screenshot da tela inicial](screnshot.png)
 
 ### Contexto
 No projeto Pixels Art foi desenvolvido uma aplicação de colorir um quadro de pixels que pode ser definido pelo próprio usuário.
